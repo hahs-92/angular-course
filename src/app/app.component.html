@@ -1,2 +1,7 @@
 
-<app-img (loaded)="onLoaded($event)" [imgUrl]="imgUrl" ></app-img>
+<!-- <app-img (loaded)="onLoaded($event)" [imgUrl]="imgUrl" ></app-img> -->
+
+<app-product
+  [product]="product"
+  *ngFor="let product of products"
+></app-product>
