@@ -11,4 +11,9 @@ export class AppComponent {
   imgUrl = "https://source.unsplash.com/random";
 
 
- }
+  onLoaded(imgUrl: string) {
+    console.log('loaded padre')
+    console.log(imgUrl)
+  }
+
+}

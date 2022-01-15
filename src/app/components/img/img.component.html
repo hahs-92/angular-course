@@ -2,9 +2,10 @@
   [src]="imgUrl"
   alt="random"
   width="200"
-  *ngIf="imgUrl; else elseImg"
+  (error)="imgError()"
+  (load)="imgLoaded()"
 >
 
-<ng-template #elseImg>
-  <img src="assets/images/default.png" alt="dafault">
-</ng-template>
+<!-- <ng-template #elseImg>
+  <img [src]="imgDefault" alt="dafault">
+</ng-template> -->
