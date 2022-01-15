@@ -1,7 +1,13 @@
 
-<!-- <app-img (loaded)="onLoaded($event)" [imgUrl]="imgUrl" ></app-img> -->
+<button (click)="toggleImg()" >toggle</button>
 
-<app-product
+<app-img
+  *ngIf="showImg"
+  (loaded)="onLoaded($event)"
+  [imgUrl]="imgUrl"
+></app-img>
+
+<!-- <app-product
   [product]="product"
   *ngFor="let product of products"
-></app-product>
+></app-product> -->

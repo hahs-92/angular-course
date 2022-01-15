@@ -11,6 +11,7 @@ import { Product } from './models/product.models';
 export class AppComponent {
   title = 'my-store';
   imgUrl = "https://source.unsplash.com/random";
+  showImg = true;
 
   products: Product[] = [
     {
@@ -44,6 +45,10 @@ export class AppComponent {
   onLoaded(imgUrl: string) {
     console.log('loaded padre')
     console.log(imgUrl)
+  }
+
+  toggleImg() {
+    this.showImg = !this.showImg;
   }
 
 }
