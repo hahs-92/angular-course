@@ -36,10 +36,10 @@ export class ImgComponent implements OnInit, OnChanges, OnDestroy {
   constructor() { }
 
   ngOnInit(): void {
-    this.counterfn = window.setInterval(() => {
-      this.counter++;
-      console.log('run counter');
-    }, 1000)
+    // this.counterfn = window.setInterval(() => {
+    //   this.counter++;
+    //   console.log('run counter');
+    // }, 1000)
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -49,7 +49,7 @@ export class ImgComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    window.clearInterval(this.counterfn)
+    // window.clearInterval(this.counterfn)
   }
 
 

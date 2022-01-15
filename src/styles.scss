@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+
+h1 {
+  font-size: 2.4rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3, p {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+
+.products {
+  app-img  {
+    img {
+      border-radius: 10px;
+    }
+  }
+}
