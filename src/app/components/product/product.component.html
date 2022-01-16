@@ -1,8 +1,8 @@
 <app-img
   [imgUrl]="product.image"
-  [imgAlt]="product.name"
+  [imgAlt]="product.title"
 ></app-img>
 
-<h2>{{product.name}}</h2>
+<h2>{{product.title}}</h2>
 <p>{{product.price}}</p>
 <button (click)="onAddToCart()">Add cart</button>
