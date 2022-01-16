@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 //models
 import { Product } from 'src/app/models/product.models';
+//service
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-products',
@@ -35,10 +37,21 @@ export class ProductsComponent implements OnInit {
       image: './assets/images/books.jpg'
     },
   ];
+  myList: Product[] = [];
+  total = 0;
 
-  constructor() { }
+  constructor(
+    private storeService: StoreService
+  ) {
+    this.myList = this.storeService.getMyList();
+   }
 
   ngOnInit(): void {
+  }
+
+  onAddToCart(product: Product) {
+    this.storeService.addToProduct(product);
+    this.total = this.storeService.getTotal();
   }
 
 }

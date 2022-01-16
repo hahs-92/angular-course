@@ -1,6 +1,16 @@
+
+<p>
+  Count: {{myList.length}}
+</p>
+
+<p>
+  Total: {{total}}
+</p>
+
 <section class="products">
   <app-product
     [product]="product"
     *ngFor="let product of products"
+    (addedProduct)="onAddToCart($event)"
 ></app-product>
 </section>

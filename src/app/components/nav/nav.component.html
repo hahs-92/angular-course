@@ -1,6 +1,6 @@
 <header class="show-mobile">
   <nav>
-    <button>
+    <button (click)="togglemenu()">
       <img src="assets/svg/icon_menu.svg" alt="menu">
     </button>
 
@@ -13,7 +13,17 @@
     </a>
   </nav>
 
+  <menu class="side-menu" [class.active]="activeMenu">
+    <button (click)="togglemenu()" >Close</button>
+    <ul class="menu-list">
+      <li><a href="">All</a></li>
+      <li><a href="">Clothes</a></li>
+      <li><a href="">Electronics</a></li>
+    </ul>
+  </menu>
 </header>
+
+
 
 <header class="hide-mobile">
   <nav>
