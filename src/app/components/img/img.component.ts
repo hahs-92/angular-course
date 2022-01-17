@@ -16,16 +16,17 @@ import {
 })
 export class ImgComponent implements OnInit, OnChanges, OnDestroy {
 
-  // @Input() imgUrl: string = '';
 
-  imgUrl: string = '';
-  @Input('imgUrl')
-  set changeImg(newImg: string) {
-    this.imgUrl = newImg;
-    //code
-    console.log('change img: ', this.imgUrl);
-  }
+  //SETINPUT
+  // imgUrl: string = '';
+  // @Input('imgUrl')
+  // set changeImg(newImg: string) {
+  //   this.imgUrl = newImg;
+  //   //code
+  //   console.log('change img: ', this.imgUrl);
+  // }
 
+  @Input() imgUrl: string = '';
   @Input() imgAlt: string = '';
   @Output() loaded = new EventEmitter<string>();
   imgDefault = 'assets/images/default.png';
@@ -44,7 +45,7 @@ export class ImgComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     //todos los cambios de los inputs
-    console.log('onChanges: ',changes);
+    //console.log('onChanges: ',changes);
 
   }
 
@@ -58,7 +59,7 @@ export class ImgComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   imgLoaded() {
-    console.log('loaded')
+    // console.log('loaded')
     this.loaded.emit(this.imgUrl)
   }
 

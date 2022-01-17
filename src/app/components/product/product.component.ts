@@ -8,21 +8,24 @@ import {Product} from '../../models/product.models'
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
 
 //de esta manera no tendremos que inicializar un objeto
   // @Input('product') product: Product = null!;
-  @Input('product') product!: Product;
+  @Input() product!: Product;
 
   @Output() addedProduct = new EventEmitter<Product>();
+  @Output() showDetail = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
 
   onAddToCart() {
     this.addedProduct.emit(this.product);
+  }
+
+  onShowDetail() {
+    this.showDetail.emit(this.product.id);
   }
 
 }

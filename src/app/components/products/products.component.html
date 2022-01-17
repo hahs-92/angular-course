@@ -1,4 +1,4 @@
-
+<!--
 <p>
   Count: {{myList.length}}
 </p>
@@ -11,7 +11,7 @@
   Today: {{today | date:'short' }}
 </p>
 
-<!-- our pipe -->
+our pipe
 <p>
   Today: {{today | timeAgo }}
 </p>
@@ -23,12 +23,34 @@
 
 <p>
   {{'HolA SoY AleX' | uppercase }}
-</p>
+</p> -->
+
+<button (click)="toggleProductDetail()">Open</button>
 
 <section class="products">
   <app-product
     [product]="product"
     *ngFor="let product of products"
     (addedProduct)="onAddToCart($event)"
+    (showDetail)="onShowDetail($event)"
 ></app-product>
 </section>
+
+<aside class="product-detail" [class.active]="showProductDetail">
+  <section *ngIf="productChosen">
+    <button (click)="toggleProductDetail()">Close</button>
+    <h1>{{productChosen.title}}</h1>
+
+    <swiper
+      [slidesPerView]="1"
+  >
+    <ng-template swiperSlide *ngFor="let img of productChosen.images">
+      <img [src]="img" [alt]="productChosen.title">
+    </ng-template>
+
+  </swiper>
+
+    <p>{{productChosen.description}}</p>
+  </section>
+
+</aside>
