@@ -7,6 +7,24 @@
   Total: {{total}}
 </p>
 
+<p>
+  Today: {{today | date:'short' }}
+</p>
+
+<!-- our pipe -->
+<p>
+  Today: {{today | timeAgo }}
+</p>
+
+<p>
+  Other Date: {{ date | date: 'yyyy.dd.MM'}}
+  Other Date: {{ date | date: 'yyyy/dd/MM'}}
+</p>
+
+<p>
+  {{'HolA SoY AleX' | uppercase }}
+</p>
+
 <section class="products">
   <app-product
     [product]="product"

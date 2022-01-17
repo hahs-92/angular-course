@@ -3,6 +3,10 @@
   [imgAlt]="product.title"
 ></app-img>
 
-<h2>{{product.title}}</h2>
-<p>{{product.price}}</p>
+<!-- our pipe -->
+<h2>{{product.title | reverse}}</h2>
+
+<h2>{{product.title }}</h2>
+<p>{{product.price | currency:'COP'}}</p>
+<p appHighlight>{{ product.description }}</p>
 <button (click)="onAddToCart()">Add cart</button>
