@@ -19,6 +19,8 @@ export class ProductsComponent implements OnInit {
   total = 0;
   showProductDetail = false;
   productChosen!: Product;
+  limit = 10;
+  offset = 0;
   // today = new Date();
   // date = new Date(2021, 1, 21);
 
@@ -31,9 +33,10 @@ export class ProductsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.productService.getAllProducts()
+    this.productService.getProducts(this.limit, this.offset)
       .subscribe(data => {
         this.products = data;
+        this.offset += this.limit;
       })
   }
 
@@ -98,6 +101,16 @@ export class ProductsComponent implements OnInit {
         this.products.splice(productIndex, 1);
         this.showProductDetail = false;
       })
+  }
+
+  loadMore() {
+    this.productService.getProducts(this.limit, this.offset)
+    .subscribe(data => {
+      // this.products = this.products.concat(data);
+      this.products.push(...data);
+      this.offset += this.limit;
+    })
+
   }
 
 }

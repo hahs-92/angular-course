@@ -36,6 +36,8 @@ our pipe
 ></app-product>
 </section>
 
+<button (click)="loadMore()">Load More</button>
+
 <aside class="product-detail" [class.active]="showProductDetail">
   <section *ngIf="productChosen">
     <button (click)="toggleProductDetail()">Close</button>
