@@ -25,9 +25,13 @@ our pipe
   {{'HolA SoY AleX' | uppercase }}
 </p> -->
 
+<!-- <button (click)="onShowDetail('3477')">detail not found</button> -->
 <button (click)="createNewProduct()">Create</button>
 
-<section class="products">
+<h2 *ngIf="statusDetail === 'loading'">loading...</h2>
+<h2 *ngIf="statusDetail === 'error'">Something went wrong!</h2>
+
+<section class="products" >
   <app-product
     [product]="product"
     *ngFor="let product of products"
@@ -39,6 +43,8 @@ our pipe
 <button (click)="loadMore()">Load More</button>
 
 <aside class="product-detail" [class.active]="showProductDetail">
+  <h2 *ngIf="statusDetail === 'loading'">loading...</h2>
+
   <section *ngIf="productChosen">
     <button (click)="toggleProductDetail()">Close</button>
     <h1>{{productChosen.title}}</h1>

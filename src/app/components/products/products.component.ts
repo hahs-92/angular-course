@@ -21,6 +21,7 @@ export class ProductsComponent implements OnInit {
   productChosen!: Product;
   limit = 10;
   offset = 0;
+  statusDetail: 'loading' | 'success' |'error' | 'init' = 'init';
   // today = new Date();
   // date = new Date(2021, 1, 21);
 
@@ -33,12 +34,23 @@ export class ProductsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.statusDetail= 'loading';
     this.productService.getProducts(this.limit, this.offset)
-      .subscribe(data => {
-        this.products = data;
-        this.offset += this.limit;
+      .subscribe({
+        next: (data) => {
+          this.statusDetail = 'success';
+          this.products = data;
+          this.offset += this.limit;
+        },
+        error:(e) => {
+          console.log(e);
+          this.statusDetail = 'error';
+        },
+        complete: () => this.statusDetail = 'init'
       })
   }
+
+
 
   onAddToCart(product: Product) {
     this.storeService.addToProduct(product);
