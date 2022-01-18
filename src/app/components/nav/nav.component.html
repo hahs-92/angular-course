@@ -40,9 +40,18 @@
     </section>
 
     <section class="info">
-      <p class="account">Alex@92.com</p>
+      <div>
+        <button
+          *ngIf="!token; else elseBlock"
+          (click)="login()"
+        >Login</button>
 
-      <section>
+        <ng-template #elseBlock>
+          {{ profile?.email }}
+        </ng-template>
+      </div>
+
+      <section class="cart">
         <a href="">
           <img src="assets/svg/icon_shopping_cart.svg" alt="">
         </a>
