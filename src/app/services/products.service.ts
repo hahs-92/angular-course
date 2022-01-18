@@ -5,8 +5,8 @@ import {
   HttpErrorResponse,
   HttpStatusCode
 } from '@angular/common/http'
-import { retry, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { retry, catchError, map, switchMap } from 'rxjs/operators';
+import { throwError, zip } from 'rxjs';
 //models
 import { Product } from '../models/product.models';
 import { CreateProductDTO } from '../models/product.models';
@@ -34,8 +34,16 @@ export class ProductsService {
     }
     return this.http
       .get<Product[]>(`${this.API_URL}/products`,  { params })
-      .pipe(retry(3));// tambien tiene retryWhen
+      .pipe(retry(3),
+      map(products => products.map(item => {
+        return {
+          ...item,
+          taxes: item.price * .19
+        }
+      }))
+    );// tambien tiene retryWhen
   }
+
 
   getProduct(id:string) {
     return this.http
@@ -56,6 +64,7 @@ export class ProductsService {
       )
   }
 
+
   create(dto:CreateProductDTO) {
     return this.http
       .post<Product>(`${this.API_URL}/products`, dto);
@@ -69,5 +78,24 @@ export class ProductsService {
   delete(id: string) {
     return this.http
       .delete<boolean>(`${this.API_URL}/products/${id}`);
+  }
+
+
+  //example como equivar el callback hell
+   //equivalente al Promises-all() en promesas
+  //no dependen una de otra
+  fetchReadAndUpdate(id: string, dto: UpdateProductDTO) {
+    return zip(
+      this.getProduct(id),
+      this.update(id, dto)
+    );
+  }
+
+  //equivalente en promesas al then()
+  fetchReadAndUpdateWithDependecy(id: string, dto: UpdateProductDTO) {
+    return this.getProduct(id)
+      .pipe(
+        switchMap((product) => this.update(product.id, dto)),
+      )
   }
 }

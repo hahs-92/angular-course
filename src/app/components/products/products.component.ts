@@ -125,4 +125,23 @@ export class ProductsComponent implements OnInit {
 
   }
 
+
+  //ejemplo de como evitar callback hell con peticiones multiples
+  readAndUpdate(id: string) {
+
+    //cuando las promesas dependen una de otra
+    this.productService.fetchReadAndUpdateWithDependecy(id, {title: 'change'})
+      .subscribe(res => console.log);
+
+
+    //cuando las promesas NO dependen una de otra
+    this.productService.fetchReadAndUpdate(id, {title: 'change'})
+    .subscribe(response => {
+      const read = response[0];
+      const update = response[1];
+      console.log(read);
+      console.log(update);
+    })
+  }
+
 }
