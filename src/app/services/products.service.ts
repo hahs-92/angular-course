@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http'
+import { retry } from 'rxjs/operators';
 //models
 import { Product } from '../models/product.models';
 import { CreateProductDTO } from '../models/product.models';
 import { UpdateProductDTO } from '../models/product.models';
+//enviroments
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  private API_URL = 'https://young-sands-07814.herokuapp.com/api';
+  //start:proxy o start
+  private API_URL = `${environment.API_URL}/api`;
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +27,8 @@ export class ProductsService {
       params = params.set('offset', offset);
     }
     return this.http
-      .get<Product[]>(`${this.API_URL}/products`,  { params });
+      .get<Product[]>(`${this.API_URL}/products`,  { params })
+      .pipe(retry(3));// tambien tiene retryWhen
   }
 
   getProduct(id:string) {
