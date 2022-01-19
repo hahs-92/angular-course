@@ -36,4 +36,13 @@ export class HomeComponent implements OnInit {
         complete: () => this.statusDetail = 'init'
       })
   }
+
+  onLoadMore() {
+    this.productsService.getProducts(this.limit, this.offset)
+    .subscribe(data => {
+      // this.products = this.products.concat(data);
+      this.products.push(...data);
+      this.offset += this.limit;
+    })
+  }
 }

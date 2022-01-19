@@ -66,7 +66,6 @@ export class ProductsService {
       )
   }
 
-
   create(dto:CreateProductDTO) {
     return this.http
       .post<Product>(`${this.API_URL}/products`, dto);
@@ -99,5 +98,17 @@ export class ProductsService {
       .pipe(
         switchMap((product) => this.update(product.id, dto)),
       )
+  }
+
+  getByCategory(categoryId:string,limit?:number, offset?:number) {
+    let params = new HttpParams();
+
+    if(limit && offset !== undefined) {
+      params = params.set('limit', limit);
+      params = params.set('offset', offset);
+    }
+
+    return this.http
+      .get<Product[]>(`${this.API_URL}/categories/${categoryId}/products`,{params})
   }
 }

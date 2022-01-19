@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 //models
 import { Product } from 'src/app/models/product.models';
 import { CreateProductDTO } from 'src/app/models/product.models';
@@ -7,6 +7,7 @@ import { UpdateProductDTO } from 'src/app/models/product.models';
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -14,6 +15,7 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductsComponent {
 
+  @Output() loadMore = new EventEmitter();
   @Input() products: Product[] = [];
   myList: Product[] = [];
   total = 0;
@@ -98,14 +100,10 @@ export class ProductsComponent {
       })
   }
 
-  // loadMore() {
-  //   this.productService.getProducts(this.limit, this.offset)
-  //   .subscribe(data => {
-  //     // this.products = this.products.concat(data);
-  //     this.products.push(...data);
-  //     this.offset += this.limit;
-  //   })
-  // }
+  onLoadMore() {
+    this.loadMore.emit();
+  }
+
 
 
   //ejemplo de como evitar callback hell con peticiones multiples
