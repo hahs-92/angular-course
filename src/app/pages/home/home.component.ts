@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 //services
 import { ProductsService } from 'src/app/services/products.service';
 //models
@@ -15,9 +16,11 @@ export class HomeComponent implements OnInit {
   statusDetail: 'loading' | 'success' |'error' | 'init' = 'init';
   limit = 10;
   offset = 0;
+  productId!:string;
 
   constructor(
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +37,11 @@ export class HomeComponent implements OnInit {
           this.statusDetail = 'error';
         },
         complete: () => this.statusDetail = 'init'
+      })
+
+    this.route.queryParamMap
+      .subscribe(params => {
+        this.productId = params.get('product') as string;
       })
   }
 

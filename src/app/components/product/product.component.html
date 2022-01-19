@@ -15,4 +15,9 @@
 <!-- <p>Tax: {{ product?.taxes | currency: 'COP' }}</p> -->
 <p appHighlight>{{ product.description }}</p>
 <button (click)="onAddToCart()">Add cart</button>
-<button (click)="onShowDetail()">Show detail</button>
+
+<a
+  routerLink="."
+  [queryParams]="{ product: product.id }"
+>See Detail</a>
+<!-- <button (click)="onShowDetail()">Show detail</button> -->

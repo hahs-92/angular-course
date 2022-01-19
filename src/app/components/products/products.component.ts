@@ -17,6 +17,14 @@ export class ProductsComponent {
 
   @Output() loadMore = new EventEmitter();
   @Input() products: Product[] = [];
+  //cada vez que camnie el id en el padre
+  @Input()
+  set productId(id:string | null) {
+    if(id) {
+      this.onShowDetail(id);
+    }
+  };
+
   myList: Product[] = [];
   total = 0;
   showProductDetail = false;
@@ -36,7 +44,6 @@ export class ProductsComponent {
    }
 
 
-
   onAddToCart(product: Product) {
     this.storeService.addToProduct(product);
     this.total = this.storeService.getTotal();
@@ -48,10 +55,17 @@ export class ProductsComponent {
 
   //recibir id producto to show
   onShowDetail(id: string) {
+    // this.statusDetail = 'loading';
+
+    if(!this.showProductDetail) {
+      this.showProductDetail = true;
+    }
+
     this.productService.getProduct(id)
       .subscribe(product => {
-        this.toggleProductDetail();
+        // this.toggleProductDetail();
         this.productChosen = product;
+        // this.statusDetail = 'success';
       })
   }
 
