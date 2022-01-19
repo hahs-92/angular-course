@@ -16,9 +16,17 @@
   <menu class="side-menu" [class.active]="activeMenu">
     <button (click)="togglemenu()" >Close</button>
     <ul class="menu-list">
-      <li><a href="">All</a></li>
-      <li><a href="">Clothes</a></li>
-      <li><a href="">Electronics</a></li>
+      <li><a routerLinkActive="active" routerLink="home">All</a></li>
+
+      <li *ngFor="let ctg of categories">
+        <a
+          [routerLink]="['/category', ctg.id]"
+          routerLinkActive="active"
+        >
+          {{ ctg.name }}
+        </a>
+      </li>
+
     </ul>
   </menu>
 </header>
@@ -33,9 +41,16 @@
       </a>
 
       <ul>
-        <li><a href="">All</a></li>
-        <li><a href="">Clothes</a></li>
-        <li><a href="">Electronics</a></li>
+        <li><a routerLinkActive="active" routerLink="home">All</a></li>
+
+        <li *ngFor="let ctg of categories">
+          <a
+            [routerLink]="['/category', ctg.id]"
+            routerLinkActive="active"
+          >
+            {{ ctg.name }}
+          </a>
+        </li>
       </ul>
     </section>
 

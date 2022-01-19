@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators'
 //services
 import { ProductsService } from 'src/app/services/products.service';
 //models
@@ -25,14 +26,24 @@ export class CategoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //obtener el id de la route
-    this.route.paramMap.subscribe(params => {
-      this.categoryId = params.get('id') as string;
-      this.productsService.getByCategory(this.categoryId,this.limit,this.offset)
-        .subscribe(data => {
-          this.products = data;
+
+    // evitar callback hell
+    this.route.paramMap
+      .pipe(
+        switchMap(params => {
+          this.categoryId = params.get('id') as string
+          return this.productsService.getByCategory(this.categoryId,this.limit, this.offset);
         })
-    });
+      ).subscribe(data => this.products = data);
+
+    //obtener el id de la route
+    // this.route.paramMap.subscribe(params => {
+    //   this.categoryId = params.get('id') as string;
+    //   this.productsService.getByCategory(this.categoryId,this.limit,this.offset)
+    //     .subscribe(data => {
+    //       this.products = data;
+    //     })
+    // });
   }
 
   onLoadMore() {
