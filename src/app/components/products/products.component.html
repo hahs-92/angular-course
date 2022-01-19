@@ -26,7 +26,7 @@ our pipe
 </p> -->
 
 <!-- <button (click)="onShowDetail('3477')">detail not found</button> -->
-<button (click)="createNewProduct()">Create</button>
+<!-- <button (click)="createNewProduct()">Create</button> -->
 
 <h2 *ngIf="statusDetail === 'loading'">loading...</h2>
 <h2 *ngIf="statusDetail === 'error'">Something went wrong!</h2>
@@ -40,7 +40,10 @@ our pipe
 ></app-product>
 </section>
 
-<button (click)="loadMore()">Load More</button>
+<!-- <section>
+  <button (click)="loadMore()">Load More</button>
+</section> -->
+
 
 <aside class="product-detail" [class.active]="showProductDetail">
   <h2 *ngIf="statusDetail === 'loading'">loading...</h2>

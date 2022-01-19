@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+//services
+import { ProductsService } from 'src/app/services/products.service';
+//models
+import { Product } from 'src/app/models/product.models';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  products: Product[] = [];
+  statusDetail: 'loading' | 'success' |'error' | 'init' = 'init';
+  limit = 10;
+  offset = 0;
+
+  constructor(
+    private productsService: ProductsService
+  ) { }
 
   ngOnInit(): void {
+    this.statusDetail= 'loading';
+    this.productsService.getProducts(this.limit, this.offset)
+      .subscribe({
+        next: (data) => {
+          this.statusDetail = 'success';
+          this.products = data;
+          this.offset += this.limit;
+        },
+        error:(e) => {
+          console.log(e);
+          this.statusDetail = 'error';
+        },
+        complete: () => this.statusDetail = 'init'
+      })
   }
-
 }
