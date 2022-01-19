@@ -1,15 +1,18 @@
-<app-img
-  *ngIf="product.images.length > 0"
-  [imgUrl]="product.images[0]"
-  [imgAlt]="product.title"
-></app-img>
+
+<a [routerLink]="['/product', product.id]">
+  <app-img
+    *ngIf="product.images.length > 0"
+    [imgUrl]="product.images[0]"
+    [imgAlt]="product.title"
+  ></app-img>
+</a>
 
 <!-- our pipe -->
-<h2>{{product.title | reverse}}</h2>
+<!-- <h2>{{product.title | reverse}}</h2> -->
 
 <h2>{{ product.title }}</h2>
 <p>Price: {{ product.price | currency:'COP'}}</p>
-<p>Tax: {{ product?.taxes | currency: 'COP' }}</p>
+<!-- <p>Tax: {{ product?.taxes | currency: 'COP' }}</p> -->
 <p appHighlight>{{ product.description }}</p>
 <button (click)="onAddToCart()">Add cart</button>
 <button (click)="onShowDetail()">Show detail</button>

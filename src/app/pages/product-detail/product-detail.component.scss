@@ -1,0 +1,17 @@
+.product-detail {
+  padding: 0 .5rem;
+  .detail {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    .gallery {
+      overflow: hidden;
+      width: 100%;
+    }
+    h2, h1 {
+      margin-bottom: 5px;
+      font-weight: bold;
+
+    }
+  }
+}
