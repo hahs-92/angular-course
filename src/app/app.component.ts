@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 //services
 import { AuthService } from './services/auth.service';
 import { UsersService } from './services/users.service';
+import { FilesService } from './services/files.service';
 
 
 
@@ -15,11 +16,13 @@ export class AppComponent {
   title = 'my-store';
   imgUrl = "https://source.unsplash.com/random";
   showImg = true;
+  imgRta = '';
   // token = '';
 
   constructor(
     private authServices: AuthService,
-    private usersServices: UsersService
+    private usersServices: UsersService,
+    private fileService: FilesService
   ){}
 
   onLoaded(imgUrl: string) {
@@ -50,5 +53,24 @@ export class AppComponent {
   //   this.authServices.profile(this.token)
   //     .subscribe(console.log)
   // }
+
+
+  downloadPDF() {
+    this.fileService
+      .getFile('my.pdf', 'https://young-sands-07814.herokuapp.com/api/files/dummy.pdf', 'application/pdf')
+      .subscribe()
+  }
+
+  onUploadFile(e:Event) {
+    const element = e.target as HTMLInputElement;
+    const file = element.files?.item(0);
+
+    if(file) {
+      this.fileService.uploadFile(file)
+        .subscribe(rta => {
+          this.imgRta = rta.location;
+        })
+    }
+  }
 
 }
