@@ -42,12 +42,12 @@
     <section class="info">
       <div>
         <button
-          *ngIf="!token; else elseBlock"
+          *ngIf=" !profile; else elseBlock"
           (click)="login()"
         >Login</button>
 
         <ng-template #elseBlock>
-          {{ profile?.email }}
+          <h2>{{ profile?.email }}</h2>
         </ng-template>
       </div>
 
