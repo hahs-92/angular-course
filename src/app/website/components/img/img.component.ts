@@ -14,7 +14,7 @@ import {
   templateUrl: './img.component.html',
   styleUrls: ['./img.component.scss']
 })
-export class ImgComponent implements OnInit, OnChanges, OnDestroy {
+export class ImgComponent {
 
 
   //SETINPUT
@@ -36,22 +36,22 @@ export class ImgComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor() { }
 
-  ngOnInit(): void {
-    // this.counterfn = window.setInterval(() => {
-    //   this.counter++;
-    //   console.log('run counter');
-    // }, 1000)
-  }
+  // ngOnInit(): void {
+  //   // this.counterfn = window.setInterval(() => {
+  //   //   this.counter++;
+  //   //   console.log('run counter');
+  //   // }, 1000)
+  // }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    //todos los cambios de los inputs
-    //console.log('onChanges: ',changes);
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   //todos los cambios de los inputs
+  //   //console.log('onChanges: ',changes);
 
-  }
+  // }
 
-  ngOnDestroy(): void {
-    // window.clearInterval(this.counterfn)
-  }
+  // ngOnDestroy(): void {
+  //   // window.clearInterval(this.counterfn)
+  // }
 
 
   imgError() {
