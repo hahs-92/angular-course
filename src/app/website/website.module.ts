@@ -10,7 +10,6 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { MyCartComponent } from './pages/my-cart/my-cart.component';
-import { CategoryComponent } from './pages/category/category.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 //components
@@ -27,7 +26,6 @@ SwiperCore.use([Pagination]);
   declarations: [
     NavComponent,
     HomeComponent,
-    CategoryComponent,
     MyCartComponent,
     LoginComponent,
     RegisterComponent,

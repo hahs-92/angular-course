@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+//customStrategy
+import { PreloadingStrategy, Route } from '@angular/router';
+import { Observable, of } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CustomPreloadService implements PreloadingStrategy{
+
+  constructor() { }
+
+  preload(route:Route, load: () => Observable<any>): Observable<any> {
+    if(route.data && route.data['preload']) {
+      return load();
+    }
+
+    //retonar un observable vacio
+    return of(null);
+  }
+}
