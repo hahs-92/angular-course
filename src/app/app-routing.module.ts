@@ -57,7 +57,12 @@ const routes: Routes = [
         component: RecoveryComponent
       }
     ]
-
+  },
+  {
+    //add module cms
+    path: 'cms',
+    loadChildren: () => import('./cms/cms.module')
+      .then(m => m.CmsModule) //habilita lazy Loading and code spliting
   },
   {
     path: '**',
