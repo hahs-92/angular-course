@@ -7,16 +7,16 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
 
   {
-    //add module cms
-    path: 'cms',
-    loadChildren: () => import('./cms/cms.module')
-      .then(m => m.CmsModule) //habilita lazy Loading and code spliting
-  },
-  {
     //add module website
     path: '',
     loadChildren: () => import('./website/website.module')
       .then(m => m.WebsiteModule) //habilita lazy Loading and code spliting
+  },
+  {
+    //add module cms
+    path: 'cms',
+    loadChildren: () => import('./cms/cms.module')
+      .then(m => m.CmsModule) //habilita lazy Loading and code spliting
   },
   {
     path: '**',
