@@ -63,6 +63,7 @@
 
         <ng-template #elseBlock>
           <a routerLink="/profile">{{ profile?.email }}</a>
+          <button (click)="logout()">Logout</button>
         </ng-template>
       </div>
 

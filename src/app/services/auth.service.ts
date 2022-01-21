@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { switchMap, tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 //enviroment
 import { environment } from 'src/environments/environment';
 //models
@@ -16,6 +17,9 @@ export class AuthService {
 
   //start:proxy o start
   private API_URL = `${environment.API_URL}/api/auth`;
+  //global state
+  private user = new BehaviorSubject<User | null>(null);
+  user$ = this.user.asObservable();
 
   constructor(
     private http:HttpClient,
@@ -35,14 +39,22 @@ export class AuthService {
     // headers = headers.set('Authorization', `Bearer ${token}`)
 
     return this.http
-      .get<User>(`${this.API_URL}/profile`);// revisa el token y obtiene el usuario
+      .get<User>(`${this.API_URL}/profile`)// revisa el token y obtiene el usuario
+      .pipe(
+        //guardar user en el state
+        tap(user => this.user.next(user))
+      );
   }
 
 
   loginAndGet(email: string, password: string) {
     return this.login(email, password)
     .pipe(
-      switchMap(rta => this.getProfile()),
+      switchMap(() => this.getProfile()),
     )
+  }
+
+  logout() {
+    this.tokenService.removeToken();
   }
 }

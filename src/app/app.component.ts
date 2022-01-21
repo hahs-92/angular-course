@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 //services
 import { AuthService } from './services/auth.service';
 import { UsersService } from './services/users.service';
 import { FilesService } from './services/files.service';
-
+import { TokenService } from './services/token.service';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { FilesService } from './services/files.service';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'my-store';
   imgUrl = "https://source.unsplash.com/random";
   showImg = true;
@@ -22,8 +22,19 @@ export class AppComponent {
   constructor(
     private authServices: AuthService,
     private usersServices: UsersService,
-    private fileService: FilesService
+    private fileService: FilesService,
+    private tokenService: TokenService
   ){}
+
+
+  ngOnInit(): void {
+    //obtener el user si hay un token
+    const token = this.tokenService.getToken();
+    if(token) {
+      this.authServices.getProfile()
+        .subscribe();
+    }
+  }
 
   onLoaded(imgUrl: string) {
     console.log('loaded padre')
@@ -56,22 +67,22 @@ export class AppComponent {
   // }
 
 
-  downloadPDF() {
-    this.fileService
-      .getFile('my.pdf', 'https://young-sands-07814.herokuapp.com/api/files/dummy.pdf', 'application/pdf')
-      .subscribe()
-  }
+  // downloadPDF() {
+  //   this.fileService
+  //     .getFile('my.pdf', 'https://young-sands-07814.herokuapp.com/api/files/dummy.pdf', 'application/pdf')
+  //     .subscribe()
+  // }
 
-  onUploadFile(e:Event) {
-    const element = e.target as HTMLInputElement;
-    const file = element.files?.item(0);
+  // onUploadFile(e:Event) {
+  //   const element = e.target as HTMLInputElement;
+  //   const file = element.files?.item(0);
 
-    if(file) {
-      this.fileService.uploadFile(file)
-        .subscribe(rta => {
-          this.imgRta = rta.location;
-        })
-    }
-  }
+  //   if(file) {
+  //     this.fileService.uploadFile(file)
+  //       .subscribe(rta => {
+  //         this.imgRta = rta.location;
+  //       })
+  //   }
+  // }
 
 }
