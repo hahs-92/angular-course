@@ -62,7 +62,7 @@
         >Login</button>
 
         <ng-template #elseBlock>
-          <h2>{{ profile?.email }}</h2>
+          <a routerLink="/profile">{{ profile?.email }}</a>
         </ng-template>
       </div>
 

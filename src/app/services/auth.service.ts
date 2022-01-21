@@ -35,7 +35,7 @@ export class AuthService {
     // headers = headers.set('Authorization', `Bearer ${token}`)
 
     return this.http
-      .get<User>(`${this.API_URL}/profile`);
+      .get<User>(`${this.API_URL}/profile`);// revisa el token y obtiene el usuario
   }
 
 

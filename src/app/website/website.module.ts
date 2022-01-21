@@ -5,6 +5,8 @@ import { SwiperModule } from 'swiper/angular';
 import SwiperCore ,{ Pagination } from 'swiper';
 //routing
 import { WebsiteRoutingModule } from './website-routing.module';
+//strategy externa
+import { QuicklinkModule } from 'ngx-quicklink';
 //Pages
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -38,7 +40,8 @@ SwiperCore.use([Pagination]);
     CommonModule,
     WebsiteRoutingModule,
     SwiperModule,
-    SharedModule
+    SharedModule,
+    QuicklinkModule
   ]
 })
 export class WebsiteModule { }

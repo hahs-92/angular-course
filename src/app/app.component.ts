@@ -34,13 +34,14 @@ export class AppComponent {
     this.showImg = !this.showImg;
   }
 
-  // createUser() {
-  //   this.usersServices.create({
-  //     name: "Alex",
-  //     email: "alex@mail.com",
-  //     password: "1234"
-  //   }).subscribe(console.log);
-  // }
+  createUser() {
+    this.usersServices.create({
+      name: "Alex",
+      email: "alex92@mail.com",
+      password: "1234",
+      role: 'customer'
+    }).subscribe(console.log);
+  }
 
   // login() {
   //   this.authServices.login("alex@mail.com", "1234")
