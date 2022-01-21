@@ -4,3 +4,7 @@
   <p>Email: {{ user.email }}</p>
   <p>Role: {{ user.role }}</p>
 </section>
+
+<section>
+  <a *ngIf="user?.role === 'admin'" routerLink="/cms">Go Cms</a>
+</section>

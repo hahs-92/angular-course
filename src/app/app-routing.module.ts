@@ -6,6 +6,9 @@ import {  QuicklinkStrategy } from 'ngx-quicklink';
 import { NotFoundComponent } from './not-found/not-found.component';
 //services
 import { CustomPreloadService } from './services/custom-preload.service';
+//guards
+import { AdminGuard } from './guards/admin.guard';
+
 
 //rules
 const routes: Routes = [
@@ -23,6 +26,7 @@ const routes: Routes = [
   {
     //add module cms
     path: 'cms',
+    canActivate: [AdminGuard],
     loadChildren: () => import('./cms/cms.module')
       .then(m => m.CmsModule) //habilita lazy Loading and code spliting
   },
